@@ -16,7 +16,7 @@ public class Main {
         
         ContaBancaria conta = new ContaBancaria(nome, sobrenome, cpf);
         
-        System.out.println("\nConta criada com sucesso!");
+        System.out.println("\nConta criada com sucesso! Dados da conta:");
         System.out.println("Titular: " + conta.getNomeCompleto());
         
         int opcao;
