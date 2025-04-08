@@ -14,13 +14,11 @@ public class Main {
         System.out.print("CPF: ");
         String cpf = scanner.nextLine();
         
-        // Criar conta bancária com os dados do cliente
         ContaBancaria conta = new ContaBancaria(nome, sobrenome, cpf);
         
         System.out.println("\nConta criada com sucesso!");
         System.out.println("Titular: " + conta.getNomeCompleto());
         
-        // Exibir menu de operações
         int opcao;
         do {
             opcao = exibirMenu(scanner);
@@ -32,44 +30,44 @@ public class Main {
                     break;
                     
                 case 2:
-                    System.out.println("\n=== REALIZAR DEPÓSITO ===");
-                    System.out.print("Informe o valor do depósito: R$ ");
+                    System.out.println("\n=== OPERAÇÃO DE DEPÓSITO ===");
+                    System.out.print("Digite o valor a ser depositado: R$ ");
                     double valorDeposito = scanner.nextDouble();
-                    scanner.nextLine(); // Limpar buffer
+                    scanner.nextLine();
                     
                     if (valorDeposito <= 0) {
-                        System.out.println("Valor inválido! O depósito deve ser maior que zero.");
+                        System.out.println("Erro: O valor do depósito precisa ser positivo.");
                     } else {
                         conta.depositar(valorDeposito);
-                        System.out.printf("Depósito de R$ %.2f realizado com sucesso!\n", valorDeposito);
-                        System.out.printf("Novo saldo: R$ %.2f\n", conta.consultarSaldo());
+                        System.out.printf("Depósito de R$ %.2f efetuado com êxito!\n", valorDeposito);
+                        System.out.printf("Seu saldo atual: R$ %.2f\n", conta.consultarSaldo());
                     }
                     break;
                     
                 case 3:
-                    System.out.println("\n=== REALIZAR SAQUE ===");
-                    System.out.print("Informe o valor do saque: R$ ");
+                    System.out.println("\n=== OPERAÇÃO DE SAQUE ===");
+                    System.out.print("Digite o valor a ser sacado: R$ ");
                     double valorSaque = scanner.nextDouble();
-                    scanner.nextLine(); // Limpar buffer
+                    scanner.nextLine();
                     
                     if (valorSaque <= 0) {
-                        System.out.println("Valor inválido! O saque deve ser maior que zero.");
+                        System.out.println("Erro: O valor do saque precisa ser positivo.");
                     } else if (valorSaque > conta.consultarSaldo()) {
-                        System.out.println("Saldo insuficiente para realizar o saque!");
+                        System.out.println("Operação não realizada: Saldo insuficiente para este saque.");
                     } else {
                         conta.sacar(valorSaque);
-                        System.out.printf("Saque de R$ %.2f realizado com sucesso!\n", valorSaque);
-                        System.out.printf("Novo saldo: R$ %.2f\n", conta.consultarSaldo());
+                        System.out.printf("Saque de R$ %.2f efetuado com êxito!\n", valorSaque);
+                        System.out.printf("Seu saldo atual: R$ %.2f\n", conta.consultarSaldo());
                     }
                     break;
                     
                 case 4:
-                    System.out.println("\nEncerrando o sistema...");
-                    System.out.println("Obrigado por utilizar nosso sistema bancário!");
+                    System.out.println("\nFinalizando o aplicativo...");
+                    System.out.println("Agradecemos por usar nossos serviços bancários!");
                     break;
                     
                 default:
-                    System.out.println("\nOpção inválida! Por favor, escolha uma opção válida.");
+                    System.out.println("\nComando inválido! Selecione uma das opções disponíveis.");
             }
             
         } while (opcao != 4);
